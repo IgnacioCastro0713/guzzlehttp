@@ -16,6 +16,6 @@ class ApiController extends Controller
 
     public function index()
     {
-        return response()->json($this->apiResponse->getAll());
+        return response()->json($this->apiResponse->all());
     }
 }

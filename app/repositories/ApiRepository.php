@@ -13,20 +13,23 @@ class ApiRepository
     protected $client;
 
 
-    public function __construct()
+    public function __construct(Client $client)
     {
-        $this->client = new Client([
-            'base_uri' => 'https://jsonplaceholder.typicode.com/todos',
-            'timeout'  => 2.0,
-        ]);
+        $this->client = $client;
     }
 
-    public function getAll()
+    public function all()
+    {
+        return $this->get('posts/');
+    }
+
+
+    protected function get(string $url)
     {
         try {
-            $response = $this->client->request('GET');
-        } catch (GuzzleException $exception) {
-            return $exception;
+            $response = $this->client->request('GET', $url);
+        } catch (GuzzleException $e) {
+            return $e;
         }
         return json_decode($response->getBody()->getContents());
     }
