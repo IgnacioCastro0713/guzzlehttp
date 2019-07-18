@@ -7,15 +7,15 @@ use App\repositories\ApiRepository;
 class ApiController extends Controller
 {
 
-    protected $guzzleResponse;
+    protected $apiResponse;
 
     public function __construct(ApiRepository $repository)
     {
-        $this->guzzleResponse = $repository;
+        $this->apiResponse = $repository;
     }
 
     public function index()
     {
-        return response()->json($this->guzzleResponse->getAll());
+        return response()->json($this->apiResponse->getAll());
     }
 }
