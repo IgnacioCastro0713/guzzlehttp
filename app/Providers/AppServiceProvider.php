@@ -16,8 +16,16 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton('GuzzleHttp\Client', function () {
             return new Client([
-                'base_uri' => 'https://jsonplaceholder.typicode.com',
+                'base_uri' => 'http://dummy.restapiexample.com/api/v1/',
                 'timeout'  => 2.0,
+
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    "Accept" => "application/json",
+                    'Authorization' => "Basic " . base64_encode("username:password")
+                ],
+
+                'verify' => false
             ]);
         });
     }

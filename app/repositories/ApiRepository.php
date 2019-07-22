@@ -6,6 +6,7 @@ namespace App\repositories;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Http\Request;
 
 class ApiRepository
 {
@@ -20,7 +21,7 @@ class ApiRepository
 
     public function all()
     {
-        return $this->get('posts/');
+        return $this->get('employees');
     }
 
 
@@ -32,5 +33,10 @@ class ApiRepository
             return $e;
         }
         return json_decode($response->getBody()->getContents());
+    }
+
+    public function post(array $body)
+    {
+        return $this->client->post('create', $body);
     }
 }
