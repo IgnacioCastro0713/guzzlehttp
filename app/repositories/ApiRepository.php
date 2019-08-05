@@ -37,6 +37,6 @@ class ApiRepository
 
     public function post(array $body)
     {
-        return $this->client->post('create', $body);
+        return $this->client->post('create', ['form_params' => $body]);
     }
 }
